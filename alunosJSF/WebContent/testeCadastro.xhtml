@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastro Alunos</title>
+	<!--
+	<style>
+		#tabViewCadastroAluno::after {
+			background: url("img/escola_wallpaper_cadastrar.jpg");
+			background-attachment: scroll;
+			background-origin: border-box;
+			background-repeat: no-repeat;
+			background-clip: border-box;
+			background-size: 100%;
+			content: "";
+			opacity: 0.5;
+			top: 2px;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+			background-position: 100% 100%;
+		}
+		
+		div:nth-child(2){
+			background: url("img/tabView_wallpaper.png");
+			opacity: 1;
+		}
+	</style>
+	-->
+</h:head>
+
+<h:body>
+	<div id="tabViewCadastroAluno" align="center">
+		<h:form id="formCadastro">
+			<p:messages showDetail="true" showSummary="true" globalOnly="false" />
+			
+			<h:panelGrid columns="4" cellpadding="7">
+				<p:outputLabel for="cadNome" value="Nome:" />
+				<p:inputText id="cadNome" value="#{pessoaMB.nome}"
+					required="true" />
+				
+				<p:outputLabel for="cadCpf" value="CPF:" />
+				<p:inputMask id="cadCpf" value="#{pessoaMB.cpf}"
+					mask="999.999.999-99" required="true" />
+				
+				<p:outputLabel for="cadEmail" value="E-mail:" />
+				<p:inputText id="cadEmail" value="#{pessoaMB.email}"
+					required="true" />
+				
+				<p:outputLabel for="cadDataNasc" value="Data de nascimento:" />
+				<p:inputMask id="cadDataNasc" value="#{pessoaMB.dataNascimento}"
+					mask="99/99/9999" placeholder="DD/MM/AAAA" required="true" />
+				
+				<p:outputLabel for="cadTelefone1" value="Telefone (1):" />
+				<p:inputMask id="cadTelefone1" value="#{pessoaMB.telefone}"
+					mask="(99) 9999-9999" />
+				
+				<p:outputLabel for="cadTelefone2" value="Telefone (2):" />
+				<p:inputMask id="cadTelefone2" value="#{pessoaMB.telefone2}"
+					mask="(99) 99999-9999" />
+				
+				<p:outputLabel for="selectOneEstado" value="Estado:" />
+				<p:selectOneMenu id="selectOneEstado"
+					value="#{pessoaMB.estado}" required="true">
+					<f:selectItems value="#{estadosCidades.estados}" />
+					<p:ajax process="@this" event="change" update="selectOneCidade" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel for="selectOneCidade" value="Cidade:" />
+				<p:selectOneMenu id="selectOneCidade"
+					value="#{pessoaMB.cidade}" required="true">
+					<f:selectItems value="#{estadosCidades.cidades}" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel for="cadRua" value="Rua:" />
+				<p:inputText id="cadRua" value="#{pessoaMB.rua}"
+					required="true" />
+				
+				<p:outputLabel for="cadNumero" value="Número:" />
+				<p:inputText id="cadNumero" value="#{pessoaMB.numero}"
+					required="true"/>
+				
+				<p:outputLabel for="cadComplemento" value="Complemento:" />
+				<p:inputText id="cadComplemento" value="#{pessoaMB.complemento}"/>
+				
+				<p:outputLabel for="cadCep" value="CEP:" />
+				<p:inputMask id="cadCep" value="#{pessoaMB.cep}"
+					mask="99999-999" required="true" />
+				
+				<p:outputLabel for="cadBairro" value="Bairro:" />
+				<p:inputText id="cadBairro" value="#{pessoaMB.bairro}"
+					required="true" />
+			</h:panelGrid>
+			<br/>
+			<p:commandButton id="cmdBtnCadastro"
+				binding="#{pessoaMB.cmdBtnCadastro}" value="CADASTRAR"
+				action="#{pessoaMB.addPessoa}" update="formCadastro"/>
+		</h:form>
+		<br />
+		<p:linkButton id="btnVoltar" value="VOLTAR" outcome="testeIndex" />
+	</div>
+</h:body>
+</html>

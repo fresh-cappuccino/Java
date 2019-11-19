@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste_agrupamento_2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="255d7691-93d3-4b24-aab1-effec3c273f3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[select * from (select p.idpessoa, p.nmpessoa, substr(p.nmpessoa, INSTR(p.nmpessoa, ' ', -1, 1) + 1, length(p.nmpessoa)) sobrenome from pessoa p) p2 where p2.idpessoa > 516000 order by upper(p2.sobrenome), upper(p2.nmpessoa)]]>
+	</queryString>
+	<field name="IDPESSOA" class="java.math.BigDecimal"/>
+	<field name="NMPESSOA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="ordem_sobrenome">
+		<groupExpression><![CDATA[$F{NMPESSOA}.toUpperCase().trim().substring($F{NMPESSOA}.lastIndexOf(" ")+1)]]></groupExpression>
+		<groupHeader>
+			<band height="122">
+				<textField>
+					<reportElement x="0" y="0" width="560" height="50" uuid="e67d6e71-aea9-4f69-9e93-c31b9c76071b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="22" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NMPESSOA}.toUpperCase().substring($F{NMPESSOA}.lastIndexOf(" ")+1)]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="70" width="120" height="30" uuid="be4aa571-cfef-47f7-a146-98dec29dbeb5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="16" isBold="false" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="140" y="70" width="420" height="30" uuid="9741238a-7105-4d2b-91b2-0f9c65c08dc2"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="16" isBold="false" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[NOME]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="-1" y="90" width="556" height="30" uuid="321f2aca-3fd8-4862-a10c-8571a4ab0406"/>
+					<text><![CDATA[___________________________________________________________________________________________________]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="10" width="118" height="30" uuid="8e4dcdec-ae2c-45b6-9fe5-0ea6c8b7e496"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{IDPESSOA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" stretchType="RelativeToTallestObject" x="140" y="10" width="417" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="15ca4e17-f085-4542-b0a4-7c269e8db404"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{NMPESSOA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

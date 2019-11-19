@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Index</title>
+	<link rel="icon" href="img/icone_excluir.png"/>
+	
+	<style>
+		:root::after {
+			background: url("img/escola_wallpaper_excluir.jpg");
+			background-attachment: scroll;
+			background-origin: border-box;
+			background-repeat: no-repeat;
+			background-clip: border-box;
+			background-size: 100%;
+			content: "";
+			opacity: 0.5;
+			top: 2px;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+			background-position: 100% 100%;
+		}
+		
+		div:nth-child(2){
+			background: url("img/tabView_wallpaper.png");
+			opacity: 1;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<div id="tabViewExcluirAluno" align="center">
+		<p:tabView>
+			<p:tab title="EXCLUIR ALUNO">
+				<h:form>
+					<p:messages>
+						<p:autoUpdate/>
+					</p:messages>
+					
+					<h:panelGrid columns="5" cellpadding="4">
+						<p:outputLabel for="excluirNome"
+							value="Tem certeza que deseja excluir o aluno" />
+						<p:outputLabel id="excluirNome" value="#{pessoaMB.nome}" />
+						
+						<p:outputLabel for="excluirId" value=", com ID:"/>
+						<p:outputLabel id="excluirId" value="#{pessoaMB.id}"/>
+						
+						<p:outputLabel for="excluirNome" value="?" />
+					</h:panelGrid>
+					<h:panelGrid columns="2" cellpadding="7">
+						<p:commandButton id="cmdBtnExcluir" value="SIM" icon="ui-icon-check"
+							action="#{pessoaMB.excluirPessoa}" update="pagina"/>
+
+						<p:commandButton id="cmdBtnNaoExcluir" value="NAO" icon="ui-icon-closethick"
+							action="#{pessoaMB.naoRealizarAcao}" update="pagina"/>
+					</h:panelGrid>
+				</h:form>
+			</p:tab>
+		</p:tabView>
+	</div>
+</h:body>
+</html>

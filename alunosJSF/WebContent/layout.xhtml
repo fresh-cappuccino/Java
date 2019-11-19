@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Test Layout</title>
+	<link rel="icon" href="img/icone_chapeuzinho.png"/>
+	
+	<style type="text/css">
+		.ui-datalist .ui-datalist-content {
+			border: 0 none
+		}
+		
+		.ui-datalist ul {
+			padding: 0px 10px 0 20px;
+			margin: 5px 0;
+		}
+		
+		.value {
+			font-weight: bold;
+		}
+		
+		.ui-autocomplete-itemtip {
+			-moz-box-sizing: content-box;
+			-webkit-box-sizing: content-box;
+			box-sizing: content-box;
+		}
+		
+		/*demo*/
+		.ui-dataview-list .ui-dataview-row {
+			border-bottom: 1px solid #A8A8A8;
+			padding: 25px 10px;
+			/* with the exported variables from Nova and Luna Themes*/
+			border-bottom-color: var(- -input-border-color, #A8A8A8);
+		}
+		
+		.logo {
+			width: 5%;
+		}
+		
+		.detail {
+			width: 85%;
+			padding-left: 25px;
+		}
+		
+		.ui-datatable .ui-datatable-header {
+			text-align: right !important;
+		}
+		
+		.ui-button-text-only .ui-button-text {
+			padding: 0.3em 0.4em;
+		}
+		
+		.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+			visibility: hidden;
+		}
+		
+		.ui-filter-column .ui-column-customfilter .custom-filter {
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		.year-spinner input {
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		#tabViewTestLayout::after{
+			background: url("img/escola_wallpaper_layout.jpg");
+			background-attachment: scroll;
+			background-origin: border-box;
+			background-repeat: no-repeat;
+			background-clip: border-box;
+			background-size: 100%;
+			content: "";
+			opacity: 0.5;
+			top: 2px;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+			background-position: 100% 100%;
+		}
+		
+		div:nth-child(2){
+			background: url("img/tabView_wallpaper.png");
+			opacity: 1;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<div id="tabViewTestLayout" align="center">
+		<p:tabView id = "abaLayout">
+			<p:tab title="ALUNOS">
+				<f:verbatim><hr/></f:verbatim>
+				<h:panelGrid columns="2" cellpadding="4">
+					<p:outputLabel value="#{pessoaMB.getWelcome()}"/>
+					<p:commandButton class="btnLog" action="#{pessoaMB.realizarLogin()}"
+						icon="#{pessoaMB.iconLogin}" binding="#{pessoaMB.cmdBtnLog}"
+						value="#{pessoaMB.botaoLog()}" update="pagina"/>
+				</h:panelGrid>
+				<f:verbatim><hr/></f:verbatim>
+				
+				<br/>
+				
+				<h:form>
+					<p:commandButton value="NOVO ALUNO" binding="#{pessoaMB.cmdBtnEntrarCadastro}"
+						action="#{pessoaMB.entrarCadastro}" update="pagina" ajax="false" icon="ui-icon-circle-plus"/>
+					
+					<br/><br/>
+					
+					<p:commandButton value="GERAR LISTAGEM DOS ALUNOS (PDF)" binding="#{pessoaMB.cmdBtnEntrarPdf}"
+						action="#{pessoaMB.entrarPdf()}" icon="ui-icon-document-b" ajax="false"/>
+					
+					<br/><br/>
+				</h:form>
+				
+				<h:form>
+					<p:dataTable var="alunoInfo" rows="5" paginator="true" paginatorAlwaysVisible="false"
+					value="#{dtFilterView.viewAlunos}" widgetVar="alunosTable" paginatorPosition="bottom"
+					emptyMessage="Nenhum aluno encontrado."
+						filteredValue="#{dtFilterView.filteredAlunos}">
+						<p:column filterBy="#{alunoInfo.id}" sortable="true" sortBy="#{alunoInfo.id}"
+							headerText="Id" filterMatchMode="contains" width="10%">
+							<h:outputText value="#{alunoInfo.id}" />
+						</p:column>
+						
+						<p:column filterBy="#{alunoInfo.nome}" sortable="true" sortBy="#{alunoInfo.nome}"
+							headerText="Nome" filterMatchMode="contains" >
+							<h:outputText value="#{alunoInfo.nome}" />
+						</p:column>
+						
+						<p:column filterBy="#{alunoInfo.email}" sortable="true" headerText="Email"
+							sortBy="#{alunoInfo.email}" filterMatchMode="contains" width="20%">
+							<h:outputText value="#{alunoInfo.email}" />
+						</p:column>
+						
+						<p:column filterBy="#{alunoInfo.cpf}" sortable="true" sortBy="#{alunoInfo.cpf}"
+							headerText="CPF" filterMatchMode="contains" width="20%">
+							<h:outputText value="#{alunoInfo.cpf}" />
+						</p:column>
+						
+						<p:column width="10%">
+							<p:commandButton id="cmdBtnEditar" value=". Editar_" icon="ui-icon-pencil"
+								action="#{pessoaMB.entrarEditar(alunoInfo.id)}" update="pagina"/>
+							<!--<p:spacer width="24" />-->
+							<f:verbatim><hr/></f:verbatim>
+							<p:commandButton id="cmdBtnExcluir" value=". Excluir" icon="ui-icon-trash"
+								action="#{pessoaMB.entrarExcluir(alunoInfo.id)}" update="pagina"/>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</p:tab>
+		</p:tabView>
+	</div>
+</h:body>
+</html>

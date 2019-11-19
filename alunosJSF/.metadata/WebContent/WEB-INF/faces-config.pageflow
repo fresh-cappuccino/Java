@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15706381281160" configfile="/alunosJSF/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="178" id="pf15708237303590" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf15708237303591 pf15710868351150" inlinks="pf15710868351150" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="layout.xhtml" x="338" y="658" id="pf15708237303592" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf15708237303593 pf15708237303604" inlinks="pf15708237303591 pf15708237303605 pf15708237303606" path="/layout.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cadastro.xhtml" x="122" y="562" id="pf15708237303607" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15708237303605" path="/cadastro.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="editar.xhtml" x="554" y="658" id="pf15708237303608" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15708237303593" path="/editar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="excluir.xhtml" x="122" y="946" id="pf15708237303609" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15708237303606" inlinks="pf15708237303604" path="/excluir.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="testeIndex.xhtml" id="pf157082373036010" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf157082373036011" path="/testeIndex.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="testeLayout.xhtml" id="pf157082373036012" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf157082373036011" path="/testeLayout.xhtml"/>
+  <links id="pf15708237303591" target="pf15708237303592" source="pf15708237303590" outcome="layout" redirect="true"/>
+  <links id="pf15708237303605" target="pf15708237303592" source="pf15708237303607" outcome="layout" redirect="true"/>
+  <links id="pf15708237303593" target="pf15708237303608" source="pf15708237303592" outcome="editar" redirect="true"/>
+  <links id="pf15708237303604" target="pf15708237303609" source="pf15708237303592" outcome="excluir" redirect="true"/>
+  <links id="pf15708237303606" target="pf15708237303592" source="pf15708237303609" outcome="layout" redirect="true"/>
+  <links id="pf157082373036011" target="pf157082373036012" source="pf157082373036010" outcome="testeLayout" redirect="true"/>
+  <links id="pf15710868351150" target="pf15708237303590" source="pf15708237303590" outcome="index" redirect="true"/>
+</pageflow:Pageflow>
