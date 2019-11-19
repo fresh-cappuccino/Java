@@ -1,0 +1,102 @@
+@charset "ISO-8859-1";
+
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #4F4F4F;
+	border-radius:5px; 
+	width:550px;
+	z-index: 10;
+}
+
+#dialogbox > div{ background:#000000; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #C0C0C0; font-size:19px; padding:10px; color:#FF2000; font-weight: bold; }
+#dialogbox > div > #dialogboxbody{ background:#D3D3D3; padding:20px; color:#000; font-weight: bold; }
+#dialogbox > div > #dialogboxfoot{ background: #D3D3D3; padding:20px; text-align:right; }
+#btnAlert { font-size: 18px; padding: 2% 5%; text-align: center; display: inline-block; border-radius: 20px; font-family: arial; background-color: #696969; color: white; }
+
+#codigo{
+	font-size: 18px;
+	-webkit-border-radius:4px;
+	-webkit-box-shadow: 1px 1px 2px #333333;
+	width:85%;
+	border-width: 1.5px;
+}
+
+.buttonLeft{
+	margin-right: 5%;
+	cursor: pointer;
+	border: none;
+	background-color: #696969;
+	color: white;
+	padding: 2% 5%;
+	text-align: center;
+	display: inline-block;
+	font-size: 100%;
+	-webkit-box-shadow: 7px 7px 5px rgba(40, 40, 40, 0.75);
+	border-radius: 20px;
+	font-family: arial;
+}
+
+.buttonRight{
+	margin-left: 5%;
+	cursor: pointer;
+	border: none;
+	background-color: #696969;
+	color: white;
+	padding: 2% 5%;
+	text-align: center;
+	display: inline-block;
+	font-size: 100%;
+	-webkit-box-shadow: 7px 7px 5px rgba(40, 40, 40, 0.75);
+	border-radius: 20px;
+	font-family: arial;
+}
+
+.container{
+	align: center;
+	text-align: center;
+	background: #BEBEBE;
+	height: 75%;
+	width: 40%;
+	position: relative;
+	-webkit-box-shadow: 10px 10px 5px rgba(50, 40, 50, 0.77);
+	left: 30%;
+	border-radius: 30px;
+	text-shadow: 6px 6px 6px rgba(50, 40, 50, 0.77);
+	top:120px;
+}
+
+.image{
+	height: 50%;
+	width: 42%;
+}
+
+#body::after{
+	background: url("../img/image_index.jpg");
+	background-attachment: scroll;
+	background-origin: border-box;
+	background-repeat: no-repeat;
+	background-clip: border-box;
+	background-size: 100%;
+	content: "";
+	opacity: 0.5;
+	top: 2px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
+	background-position: 100% 100%;
+}

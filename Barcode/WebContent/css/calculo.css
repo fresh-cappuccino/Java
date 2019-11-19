@@ -1,0 +1,104 @@
+@charset "ISO-8859-1";
+
+.txt{
+	text-align: center;
+	line-height: 1.6;
+	font-family: arial;
+	text-decoration: inherit;
+	text-shadow:9px 9px 7px rgba(40, 40, 40, 0.55);
+	background-color: #CAE1FF; 
+	border: none;
+	color: black;
+	padding: 2% 4%;
+	width: 90%;
+	height: 100%;
+	text-align: center;
+	display: inline-block;
+	font-size: 21px;
+	border-radius: 20px;
+	-webkit-box-shadow: 7px 7px 5px rgba(40, 40, 40, 0.75);
+}
+
+.ipte{
+	text-align: center;
+	line-height: 1.6;
+	font-family: arial;
+	text-decoration: inherit;
+	text-shadow:9px 9px 7px rgba(40, 40, 40, 0.55);
+	background-color: #CAE1FF; 
+	border: none;
+	color: black;
+	padding: 2% 3%;
+	width: 93%;
+	height: 70%;
+	text-align: center;
+	display: inline-block;
+	font-size: 25px;
+	border-radius: 20px;
+	-webkit-box-shadow: 7px 7px 5px rgba(40, 40, 40, 0.75);
+}
+
+.txt_erro{
+	color: red;
+	text-align: center;
+	background-color: #D3D3D3;
+	line-height: 1.6;
+	font-family: arial;
+}
+
+.txt_validado{
+	color: blue;
+	text-align: center;
+	background-color: #D3D3D3;
+	line-height: 1.6;
+	font-family: arial;
+}
+
+.tabela{
+	border-color: #D3D3D3; 
+	text-align: center;
+}
+
+#link{
+	text-decoration: inherit;
+	background-color: #696969; 
+	border: none;
+	color: white;
+	padding: 1% 2%;
+	text-align: center;
+	display: inline-block;
+	font-size: 18px;
+	border-radius: 20px;
+	-webkit-box-shadow: 7px 7px 5px rgba(40, 40, 40, 0.75);
+	font-family: arial;
+}
+
+.body_calculo::after{
+	background-image: url("../img/image_calculo.jpg");
+	background-attachment: fixed;
+	background-origin: border-box;
+	background-repeat: no-repeat;
+	background-clip: border-box;
+	background-size: 100%;
+	content: "";
+	opacity: 0.5;
+	top: 2px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1; 	
+}
+
+.container{
+	align: center;
+	text-align: center;
+	height: 75%;
+	width: 40%;
+	position: relative;
+	-webkit-box-shadow: 10px 10px 5px rgba(50, 40, 50, 0.77);
+	left: 30%;
+	border-radius: 30px;
+	text-shadow: 6px 6px 6px rgba(50, 40, 50, 0.77);
+	top:120px;
+}
