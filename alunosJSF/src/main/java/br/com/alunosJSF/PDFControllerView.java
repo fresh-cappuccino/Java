@@ -49,9 +49,9 @@ public class PDFControllerView implements Serializable {
 		String porta = "1521";
 		String dataBase = "DESENV";
 		//---------------USUARIO--------------//
-		String usuario = "leoferreira";
+		String usuario = "leoandrade";
 		//---------------SENHA----------------//
-		String senha = "1234-leo";
+		String senha = "password";
 		
 		return DriverManager.getConnection(oracleDir + host + ":" + porta + ":" + dataBase, usuario, senha);
 	}
