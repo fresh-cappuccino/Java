@@ -8,14 +8,17 @@ public class ObterConexao {
 	public static Connection conexao() {
 		Connection conexao = null;
 		
-		String server = "localhost";
+		//---------------URL------------------//
+		String oracleDir = "jdbc:oracle:thin:@";
+		String host = "192.168.20.57";
 		String porta = "1521";
-		String database = "";
+		String dataBase = "DESENV";
+		String url = oracleDir + host + ":" + porta + ":" + dataBase;
+		//---------------USUARIO--------------//
+		String usuario = "leoferreira";
+		//---------------SENHA----------------//
+		String senha = "1234-leo";
 		
-		String usuario = "leoandrade";
-		String senha = "password";
-		
-		String url = "jdbc:oracle:thin:@192.168.20.57:1521:DESENV";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
