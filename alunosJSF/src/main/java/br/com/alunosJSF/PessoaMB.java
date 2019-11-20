@@ -53,6 +53,7 @@ import net.sf.jasperreports.engine.JasperReport;
 @SessionScoped
 public class PessoaMB implements Serializable {
 	private String pagina = "login.xhtml";
+	private String pdf = "blank.xhtml";
 	private String icone = new String();
 	private Login login = new Login();
 	private boolean logado = false;
@@ -174,6 +175,7 @@ public class PessoaMB implements Serializable {
 	}
 	
 	public void entrarLayout() {
+		pdf = "blank.xhtml";
 		pagina = "layout.xhtml";
 	}
 	
@@ -445,18 +447,30 @@ public class PessoaMB implements Serializable {
 		this.pessoas = pessoas;
 	}
 	
+	public void entrarPdfView () {
+		pdf = "pdfView.xhtml";
+	}
+	
+	public String getPdf() {
+		return pdf;
+	}
+	
+	public void setPdf(String pdf) {
+		this.pdf = pdf;
+	}
+	
 	private Connection getConexao() throws SQLException, ClassNotFoundException {
 		Connection conexao = DriverManager.getConnection("jdbc:oracle:thin:@192.168.20.57:1521:DESENV", "leoferreira", "1234-leo");
 		return conexao;
 	}
 	
 	private ByteArrayOutputStream gerarPDF(String diretorio) {
-		System.out.println("PRIMEIRO ERRO AQUI?");
+//		System.out.println("PRIMEIRO ERRO AQUI?");
 		ByteArrayOutputStream retorno = new ByteArrayOutputStream();
-		System.out.println("Cria o ByteArrayOutputStream()");
+//		System.out.println("Cria o ByteArrayOutputStream()");
 		
 		String relatorio = diretorio + "Pessoas.jasper";
-		System.out.println("Cria a string do diretorio: " + relatorio);
+//		System.out.println("Cria a string do diretorio: " + relatorio);
 //		String imagem = diretorio + "wood.jpg";
 		try {
 			// Faz a compilação do relatório
@@ -465,21 +479,21 @@ public class PessoaMB implements Serializable {
 			
 			// Cria o mapa de parâmetros que será enviado ao relatório
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
-			System.out.println("Cira o HashMap de parametros");
+//			System.out.println("Cira o HashMap de parametros");
 			
 			// Faz o apontamento para a imagem que fce no top do relatório
 			// paramatros.put("logo", imagem);
 			
 			// Preenche os dados do relatório
 			JasperPrint jasperPrint = JasperFillManager.fillReport(relatorio, parametros, getConexao());
-			System.out.println("Cria o jasperprint");
+//			System.out.println("Cria o jasperprint");
 			
 			// Gera o arquivo PDF no caminho especificado
 			JasperExportManager.exportReportToPdfStream(jasperPrint, retorno);
-			System.out.println("Esporta o PDF");
+//			System.out.println("Esporta o PDF");
 			
 		} catch (Exception e) {
-			System.out.println("ERRO AO CRIAR PDF");
+//			System.out.println("ERRO AO CRIAR PDF");
 			e.printStackTrace();
 		}
 		return retorno;
@@ -492,39 +506,39 @@ public class PessoaMB implements Serializable {
 			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 			
-			System.out.println("Inicio");
+//			System.out.println("Inicio");
 			PessoaMB geraRelatorio = new PessoaMB();
 			
 			String realPath = request.getServletContext().getRealPath("/WEB-INF");
 			String path = realPath + "\\classes\\report\\";
 			baos = geraRelatorio.gerarPDF(path);
-			System.out.println("Gera o Baos");
+//			System.out.println("Gera o Baos");
 			response.setContentType("application/pdf");
 			response.setContentLength(baos.size());
 			response.setHeader("Content-disposition", "inline; filename=ListagemAlunos.pdf");
 			
-			System.out.println("Seta o Header");
+//			System.out.println("Seta o Header");
 			
 			response.getOutputStream().write(baos.toByteArray());
 			
-			System.out.println("Faz o write");
+//			System.out.println("Faz o write");
 			
 			response.getOutputStream().flush();
 			
-			System.out.println("Da o flush");
+//			System.out.println("Da o flush");
 			
 			response.getOutputStream().close();
 			
-			System.out.println("Da o close");
+//			System.out.println("Da o close");
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("KKKKKK");
+//			System.out.println("KKKKKK");
 			validador.mostraMensagemERROR("NÃO FOI POSSÍVEL GERAR O PDF!", "Contact admin.");
 //			return null;
 		}
 		
 //		String caminhoWebInf = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/WEB-INF");
-//		InputStream stream = new FileInputStream(caminhoWebInf+"/classes/report/ListagemAlunos.pdf"); //Caminho onde está salvo o arquivo.
+//		InputStream stream = new FileInputStream(caminhoWebInf+"/classes/report/ListagemAlunos.pdf");
 //		file = new DefaultStreamedContent(stream, "application/pdf", "ListagemAlunos.pdf");
 		
 //		System.out.println(stream.available());
@@ -765,7 +779,6 @@ public class PessoaMB implements Serializable {
 		return "index";
 	}
 	
-	
 	private Pessoa getIndexOfPessoas(List<Pessoa> pessoas, String searchId) {
 		for (Pessoa content : pessoas) {
 			if (content.getId().equals(searchId)) {
@@ -777,7 +790,6 @@ public class PessoaMB implements Serializable {
 				"00000-000", "Complemento", "Acrelândia", "Acre");
 	}
 	
-	
 	private String padString(String string, char charComplement, int stringSize) {
 		while (string.length() < stringSize) {
 			string = (charComplement + "").concat(string);
@@ -786,12 +798,10 @@ public class PessoaMB implements Serializable {
 		return string;
 	}
 	
-	
 	public String botaoLog() {
 		logado = (validador.login(login.getUsuario(), login.getConfirmaUsuario(), login.getConfirmaSenha(), login.getDefaultPass()) == true) ? true : false;
 		return (logado == true) ? "LOGOUT" : "LOGIN";
 	}
-	
 	
 	public String realizarLogin() {
 		if (logado == true) {
@@ -809,7 +819,6 @@ public class PessoaMB implements Serializable {
 		}
 	}
 	
-	
 	public HtmlCommandButton getCmdBtnEntrarLayout() {
 		return cmdBtnEntrarLayout;
 	}
@@ -818,43 +827,33 @@ public class PessoaMB implements Serializable {
 		this.cmdBtnEntrarLayout = cmdBtnEntrarLayout;
 	}
 	
-	
-	
 	public HtmlCommandButton getCmdBtnCadastro() {
 		return cmdBtnCadastro;
 	}
-	
 	
 	public void setCmdBtnCadastro(HtmlCommandButton cmdBtnCadastro) {
 		this.cmdBtnCadastro = cmdBtnCadastro;
 	}
 	
-	
 	public HtmlCommandButton getCmdBtnEntrarCadastro() {
 		return cmdBtnEntrarCadastro;
 	}
-	
 	
 	public void setCmdBtnEntrarCadastro(HtmlCommandButton cmdBtnEntrarCadastro) {
 		this.cmdBtnEntrarCadastro = cmdBtnEntrarCadastro;
 	}
 	
-	
 	public HtmlCommandButton getCmdBtnEditar() {
 		return cmdBtnEditar;
 	}
-	
 	
 	public void setCmdBtnEditar(HtmlCommandButton cmdBtnEditar) {
 		this.cmdBtnEditar = cmdBtnEditar;
 	}
 	
-	
-	
 	public HtmlCommandButton getCmdBtnLog() {
 		return cmdBtnLog;
 	}
-	
 	
 	public void setCmdBtnLog(HtmlCommandButton cmdBtnLog) {
 		this.cmdBtnLog = cmdBtnLog;
@@ -863,17 +862,14 @@ public class PessoaMB implements Serializable {
 	public HtmlCommandButton getCmdBtnEntrarPdf() {
 		return cmdBtnEntrarPdf;
 	}
-
 	
 	public void setCmdBtnEntrarPdf(HtmlCommandButton cmdBtnEntrarPdf) {
 		this.cmdBtnEntrarPdf = cmdBtnEntrarPdf;
 	}
-
 	
 	public HtmlCommandButton getCmdBtnLogin() {
 		return cmdBtnLogin;
 	}
-
 	
 	public void setCmdBtnLogin(HtmlCommandButton cmdBtnLogin) {
 		this.cmdBtnLogin = cmdBtnLogin;

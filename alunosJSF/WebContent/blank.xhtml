@@ -19,25 +19,7 @@
 
 <h:body>
 	<div align="center">
-		<p:tabView>
-			<p:tab title="LISTAGEM DE ALUNOS">
-				<h:form>
-					<p:commandButton value="GERAR PDF" binding="#{pessoaMB.cmdBtnEntrarPdf}"
-						action="#{pessoaMB.entrarPdfView}" icon="ui-icon-document-b" ajax="false"/>
-				</h:form>
-				
-				<br/><br/>
-				
-				<h:form>
-					<p:commandButton value="VOLTAR AO LAYOUT" binding="#{pessoaMB.cmdBtnEntrarLayout}"
-						action="#{pessoaMB.entrarLayout}" update="pagina"/>
-				</h:form>
-			</p:tab>
-		</p:tabView>
-		
-		<br/><br/>
-		
-		<ui:include src="#{pessoaMB.pdf}"/>
+		<h:panelGroup id="blank" layout="block" ></h:panelGroup>
 	</div>
 </h:body>
 </html>
