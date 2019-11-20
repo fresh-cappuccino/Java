@@ -11,7 +11,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperRunManager;
+//import net.sf.jasperreports.engine.JasperRunManager;
 
 public class JasperPdfGenerator {
 	private Connection getConexao() throws SQLException, ClassNotFoundException {
