@@ -449,7 +449,7 @@ public class PessoaMB implements Serializable {
 	}
 	
 	public void entrarPdfView () {
-		pdf = "pdfView.xhtml";
+		setPdf(validador.login(login.getUsuario(), login.getConfirmaUsuario(), login.getConfirmaSenha(), login.getDefaultPass()) ? "pdfView.xhtml" : "blank.xhtml");
 	}
 	
 	public String getPdf() {
