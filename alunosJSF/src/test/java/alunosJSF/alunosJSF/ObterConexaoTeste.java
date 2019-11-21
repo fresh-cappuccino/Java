@@ -12,8 +12,8 @@ public class ObterConexaoTeste {
 		String porta = "1521";
 		String database = "";
 		
-		String usuario = "leoferreira";
-		String senha = "1234-leo";
+		String usuario = "";
+		String senha = "";
 		
 		String url = "jdbc:oracle:thin:@192.168.20.57:1521:DESENV";
 		try {
