@@ -15,9 +15,9 @@ public class ObterConexao {
 		String dataBase = "DESENV";
 		String url = oracleDir + host + ":" + porta + ":" + dataBase;
 		//---------------USUARIO--------------//
-		String usuario = "leoferreira";
+		String usuario = "leo_andrade";
 		//---------------SENHA----------------//
-		String senha = "1234-leo";
+		String senha = "password";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
