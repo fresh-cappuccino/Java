@@ -1,5 +1,4 @@
 package br.com.alunosJSF;
-
 /*
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -461,7 +460,7 @@ public class PessoaMB implements Serializable {
 		this.pdf = pdf;
 	}
 	
-	/*private Connection getConexao() throws SQLException, ClassNotFoundException {
+	private Connection getConexao() throws SQLException, ClassNotFoundException {
 		Connection conexao = DriverManager.getConnection("jdbc:oracle:thin:@192.168.20.57:1521:DESENV", "leoferreira", "1234-leo");
 		return conexao;
 	}
@@ -545,7 +544,7 @@ public class PessoaMB implements Serializable {
 		
 //		System.out.println(stream.available());
 //		return file;
-	}*/
+	}
 	
 	public void addPessoa() {
 		if (validador.login(login.getUsuario(), login.getConfirmaUsuario(), login.getConfirmaSenha(), login.getDefaultPass())) {

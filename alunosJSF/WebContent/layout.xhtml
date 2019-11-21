@@ -100,10 +100,12 @@
 			<p:tab title="ALUNOS">
 				<f:verbatim><hr/></f:verbatim>
 				<h:panelGrid columns="2" cellpadding="4">
-					<p:outputLabel value="#{pessoaMB.getWelcome()}"/>
-					<p:commandButton class="btnLog" action="#{pessoaMB.realizarLogin()}"
-						icon="#{pessoaMB.iconLogin}" binding="#{pessoaMB.cmdBtnLog}"
-						value="#{pessoaMB.botaoLog()}" update="pagina"/>
+					<h:form>
+						<p:outputLabel value="#{pessoaMB.getWelcome()}"/>
+						<p:commandButton class="btnLog" action="#{pessoaMB.realizarLogin()}"
+							icon="#{pessoaMB.iconLogin}" binding="#{pessoaMB.cmdBtnLog}"
+							value="#{pessoaMB.botaoLog()}" update="pagina" ajax="false"/>
+					</h:form>
 				</h:panelGrid>
 				<f:verbatim><hr/></f:verbatim>
 				
@@ -148,11 +150,11 @@
 						
 						<p:column width="10%">
 							<p:commandButton id="cmdBtnEditar" value=". Editar_" icon="ui-icon-pencil"
-								action="#{pessoaMB.entrarEditar(alunoInfo.id)}" update="pagina"/>
+								action="#{pessoaMB.entrarEditar(alunoInfo.id)}" update="pagina" ajax="false"/>
 							<!--<p:spacer width="24" />-->
 							<f:verbatim><hr/></f:verbatim>
 							<p:commandButton id="cmdBtnExcluir" value=". Excluir" icon="ui-icon-trash"
-								action="#{pessoaMB.entrarExcluir(alunoInfo.id)}" update="pagina"/>
+								action="#{pessoaMB.entrarExcluir(alunoInfo.id)}" update="pagina" ajax="false"/>
 						</p:column>
 					</p:dataTable>
 				</h:form>

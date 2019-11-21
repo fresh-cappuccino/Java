@@ -42,27 +42,27 @@
 			<p:messages showDetail="true" showSummary="true" globalOnly="false" />
 			
 			<h:panelGrid columns="4" cellpadding="7">
-				<p:outputLabel for="cadNome" value="Nome:" />
+				<p:outputLabel for="cadNome" value="Nome: *" />
 				<p:inputText id="cadNome" value="#{pessoaMB.nome}"
 					required="true" />
 				
-				<p:outputLabel for="cadCpf" value="CPF:" />
+				<p:outputLabel for="cadCpf" value="CPF: *" />
 				<p:inputMask id="cadCpf" value="#{pessoaMB.cpf}"
 					mask="999.999.999-99" required="true" />
 				
-				<p:outputLabel for="cadEmail" value="E-mail:" />
+				<p:outputLabel for="cadEmail" value="E-mail: *" />
 				<p:inputText id="cadEmail" value="#{pessoaMB.email}"
 					required="true" />
 				
-				<p:outputLabel for="cadDataNasc" value="Data de nascimento:" />
+				<p:outputLabel for="cadDataNasc" value="Data de nascimento: *" />
 				<p:inputMask id="cadDataNasc" value="#{pessoaMB.dataNascimento}"
 					mask="99/99/9999" placeholder="DD/MM/AAAA" required="true" />
 				
-				<p:outputLabel for="cadTelefone1" value="Telefone (1):" />
+				<p:outputLabel for="cadTelefone1" value="Telefone fixo:" />
 				<p:inputMask id="cadTelefone1" value="#{pessoaMB.telefone}"
 					mask="(99) 9999-9999" />
 				
-				<p:outputLabel for="cadTelefone2" value="Telefone (2):" />
+				<p:outputLabel for="cadTelefone2" value="Celular:" />
 				<p:inputMask id="cadTelefone2" value="#{pessoaMB.telefone2}"
 					mask="(99) 99999-9999" />
 				
@@ -79,22 +79,22 @@
 					<f:selectItems value="#{estadosCidades.cidades}" />
 				</p:selectOneMenu>
 				
-				<p:outputLabel for="cadRua" value="Rua:" />
+				<p:outputLabel for="cadRua" value="Rua: *" />
 				<p:inputText id="cadRua" value="#{pessoaMB.rua}"
 					required="true" />
 				
-				<p:outputLabel for="cadNumero" value="Número:" />
+				<p:outputLabel for="cadNumero" value="Número: *" />
 				<p:inputText id="cadNumero" value="#{pessoaMB.numero}"
 					required="true"/>
 				
 				<p:outputLabel for="cadComplemento" value="Complemento:" />
 				<p:inputText id="cadComplemento" value="#{pessoaMB.complemento}"/>
 				
-				<p:outputLabel for="cadCep" value="CEP:" />
+				<p:outputLabel for="cadCep" value="CEP: *" />
 				<p:inputMask id="cadCep" value="#{pessoaMB.cep}"
 					mask="99999-999" required="true" />
 				
-				<p:outputLabel for="cadBairro" value="Bairro:" />
+				<p:outputLabel for="cadBairro" value="Bairro: *" />
 				<p:inputText id="cadBairro" value="#{pessoaMB.bairro}"
 					required="true" />
 			</h:panelGrid>

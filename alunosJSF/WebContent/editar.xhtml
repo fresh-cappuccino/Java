@@ -43,26 +43,26 @@
 					<p:messages showDetail="true" showSummary="true" globalOnly="false" />
 					
 					<h:panelGrid columns="4" cellpadding="7">
-						<p:outputLabel for="editNome" value="Nome:" />
+						<p:outputLabel for="editNome" value="Nome: *" />
 						<p:inputText id="editNome" value="#{pessoaMB.nome}"/>
 
-						<p:outputLabel for="editCpf" value="CPF:" />
+						<p:outputLabel for="editCpf" value="CPF: *" />
 						<p:inputMask id="editCpf" value="#{pessoaMB.cpf}"
 							mask="999.999.999-99"/>
 
-						<p:outputLabel for="editEmail" value="E-mail:" />
+						<p:outputLabel for="editEmail" value="E-mail: *" />
 						<p:inputText id="editEmail" value="#{pessoaMB.email}"/>
 
 						<p:outputLabel for="editDataNascimento"
-							value="Data de Nascimento:" />
+							value="Data de Nascimento: *" />
 						<p:inputMask id="editDataNascimento" value="#{pessoaMB.dataNascimento}"
 							mask="99/99/9999" placeholder="DD/MM/AAAA"/>
 
-						<p:outputLabel for="editTelefone" value="Telefone (1):" />
+						<p:outputLabel for="editTelefone" value="Telefone fixo:" />
 						<p:inputMask id="editTelefone" value="#{pessoaMB.telefone}"
 							mask="(99) 9999-9999" />
 
-						<p:outputLabel for="editTelefone2" value="Telefone (2):" />
+						<p:outputLabel for="editTelefone2" value="Celular:" />
 						<p:inputMask id="editTelefone2" value="#{pessoaMB.telefone2}"
 							mask="(99) 99999-9999" />
 
@@ -80,21 +80,21 @@
 							<f:selectItems value="#{estadosCidades.cidades}" />
 						</p:selectOneMenu>
 
-						<p:outputLabel for="editRua" value="Rua:" />
+						<p:outputLabel for="editRua" value="Rua: *" />
 						<p:inputText id="editRua" value="#{pessoaMB.rua}"/>
 
-						<p:outputLabel for="editNumero" value="Número:" />
+						<p:outputLabel for="editNumero" value="Número: *" />
 						<p:inputText id="editNumero" value="#{pessoaMB.numero}"/>
 
 						<p:outputLabel for="editComplemento" value="Complemento:" />
 						<p:inputText id="editComplemento"
 							value="#{pessoaMB.complemento}" />
 
-						<p:outputLabel for="editCep" value="CEP:" />
+						<p:outputLabel for="editCep" value="CEP: *" />
 						<p:inputMask id="editCep" value="#{pessoaMB.cep}"
 							mask="99999-999"/>
 
-						<p:outputLabel for="editBairro" value="Bairro:" />
+						<p:outputLabel for="editBairro" value="Bairro: *" />
 						<p:inputText id="editBairro" value="#{pessoaMB.bairro}"/>
 					</h:panelGrid>
 					<br />

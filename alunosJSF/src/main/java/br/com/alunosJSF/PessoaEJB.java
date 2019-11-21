@@ -15,7 +15,7 @@ import javax.persistence.Query;
 public class PessoaEJB {
 	@PersistenceContext(unitName = "ALUNOSJSF_JTA_PU")
 	private EntityManager em;
-	private List rl;
+//	private List rl;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PessoaJPA getPessoaJPA(long id) {

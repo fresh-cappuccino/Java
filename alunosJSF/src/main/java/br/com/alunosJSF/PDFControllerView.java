@@ -31,7 +31,6 @@ public class PDFControllerView implements Serializable {
 	@PostConstruct
 	void init() {
 		geraPDF();
-		
 		try {
 			FileInputStream fis = new FileInputStream(new File(caminho+nmArqPDF));
 			streamedContent = new DefaultStreamedContent(fis, "application/pdf");
@@ -49,9 +48,9 @@ public class PDFControllerView implements Serializable {
 		String porta = "1521";
 		String dataBase = "DESENV";
 		//---------------USUARIO--------------//
-		String usuario = "leoandrade";
+		String usuario = "leoferreira";
 		//---------------SENHA----------------//
-		String senha = "password";
+		String senha = "1234-leo";
 		
 		return DriverManager.getConnection(oracleDir + host + ":" + porta + ":" + dataBase, usuario, senha);
 	}
@@ -79,6 +78,7 @@ public class PDFControllerView implements Serializable {
 		if (FacesContext.getCurrentInstance().getRenderResponse()) {
             return new DefaultStreamedContent();
         } else {
+        	System.out.println(caminho+nmArqPDF);
         	return streamedContent;
         }
 	}

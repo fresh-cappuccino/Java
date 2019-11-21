@@ -15,7 +15,7 @@ import net.sf.jasperreports.engine.JasperReport;
 
 public class JasperPdfGenerator {
 	private Connection getConexao() throws SQLException, ClassNotFoundException {
-		Connection conexao = DriverManager.getConnection("jdbc:oracle:thin:@192.168.20.57:1521:DESENV", "leoandrade", "password");
+		Connection conexao = DriverManager.getConnection("jdbc:oracle:thin:@192.168.20.57:1521:DESENV", "leoferreira", "1234-leo");
 		return conexao;
 	}
 	
