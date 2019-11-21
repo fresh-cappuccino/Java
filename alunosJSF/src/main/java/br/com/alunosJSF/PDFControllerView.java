@@ -56,6 +56,12 @@ public class PDFControllerView implements Serializable {
 	}
 	
 	private void geraPDF() {
+		File file = new File(caminho+nmArqPDF);
+		
+		if (file.exists()) {
+			file.delete();
+		}
+		
 		String diretorio = caminho + nmArqJasper;
 		try {
 			
