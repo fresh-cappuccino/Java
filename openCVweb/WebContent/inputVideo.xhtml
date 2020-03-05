@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Importando Video</title>
+</h:head>
+
+<h:body>
+	<h:form enctype="multipart/form-data">
+		<p:fileUpload mode="advanced" fileUploadListener="#{uploadAvancadoBean.upload}" label="Importar Vídeo" uploadLabel="Enviar"
+			cancelLabel="Cancelar" allowTypes="/(\.|\/)(mp4|avi|flv|mkv|ovg|webm|mov)$/" fileLimit="1" update="pagina"
+			invalidFileMessage="São permitidas somente imagens (.mp4, .avi, .flv, .mkv, .ovg, .webm ou .mov)"
+			fileLimitMessage="Só é possível escolher 1 arquivos por vez." multiple="false" auto="false" oncomplete=""/>
+			
+			<p:dialog header="Video Name" widgetVar="videoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="video-dialog" style="text-align:center;">
+					<p:panelGrid  columns="2" rendered="#{not empty videoHandler.selectedVideo}" columnClasses="label,value">
+					
+						<f:facet name="header">
+							Teste
+						</f:facet>
+						
+						<h:outputText value="Testando"/>
+						
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+	</h:form>
+</h:body>
+</html>

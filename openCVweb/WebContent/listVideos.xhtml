@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+
+	<title>Index</title>
+	
+	<style>
+		body {
+			background-color: #F5F5F5;
+		}
+	</style>
+	
+</h:head>
+
+<h:body>
+
+	<br/>
+	
+	<div align="center">
+		<h:panelGroup layout="block">
+			<p:panel style="width: 70%;">
+				<h:form>
+					<p:commandButton value="Importar Vídeo" action="#{handler.redirectInputVideo()}"/>
+				</h:form>
+			</p:panel>
+		</h:panelGroup>
+	</div>
+	
+	<br/>
+
+	<h:form id="form">
+		<div align="center">
+			<h:panelGroup layout="block">
+				<p:panel style="width: 70%;">
+					<p:dataTable id="dtVideo" var="file" value="#{dtBasicView.files}" selection="#{videoHandler.selectedVideo}"
+						selectionMode="single" rowKey="#{file}">
+						
+						<p:column headerText="Visualizar">
+							
+							<div align="center">
+								<p:commandButton actionListener="#{videoHandler.showSelectedVideo(file)}" value="Carregar Vídeo"
+									update="page-view form"/>
+							</div>
+							
+						</p:column>
+						
+						<p:column headerText="Videos" width="50%">
+							<h:outputText value="#{file}" />
+						</p:column>
+						
+						<p:column headerText="Deletar">
+							
+							<div align="center">
+								<p:commandButton id="cmdBtnDel" value="Deletar vídeo" actionListener="#{videoHandler.setSelectedVideo(file)}"
+									update="form" oncomplete="PF('videoDelDialog').show()"/>
+							</div>
+							
+						</p:column>
+						
+					</p:dataTable>
+					
+					<p:contextMenu for="dtVideo">
+						<p:menuitem value="Editar nome" update="form" oncomplete="PF('videoEditDialog').show()"/>
+						<p:menuitem value="Deletar video" update="form" oncomplete="PF('videoDelDialog').show()"/>
+					</p:contextMenu>
+					
+					<p:dialog header="Video Edit" widgetVar="videoEditDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="videoEdit" style="text-align:center;">
+							<p:panelGrid  columns="2" rendered="#{not empty videoHandler.selectedVideo}" columnClasses="label,value">
+								
+								<f:facet name="header">
+									Editar nome do vídeo
+								</f:facet>
+								
+								<h:outputText value="Nome Atual: "/>
+								<h:outputText value="#{videoHandler.getSelectedVideoName()}"/>
+								
+								<h:outputText value="Novo Nome: "/>
+								<h:inputText value="#{dtBasicView.name}"/>
+								
+								<p:commandButton value="Alterar Nome" update="form" ajax="false"
+									actionListener="#{videoHandler.alterName(selectedVideo)}"/>
+								
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+					
+					<p:dialog header="Video Delete" widgetVar="videoDelDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="videoDelete" style="text-align:center;">
+							<p:panelGrid  columns="2" rendered="#{not empty videoHandler.selectedVideo}" columnClasses="label,value">
+								
+								<f:facet name="header">
+									Tem certeza que deseja excluir este vídeo?
+								</f:facet>
+								
+								<h:outputText value="#{videoHandler.selectedVideo}"/>
+								
+								<p:commandButton value="DELETAR" update="form" ajax="false"
+									actionListener="#{videoHandler.deleteFile(videoHandler.selectedVideo)}"/>
+								
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+				</p:panel>
+			</h:panelGroup>
+		</div>
+	</h:form>
+	
+	<br/>
+	
+	<div align="center">
+		<h:panelGroup id="page-view" layout="block">
+			<p:panel style="width: 70%;">
+				<ui:include src="#{videoHandler.pageView}"/>
+			</p:panel>
+		</h:panelGroup>
+	</div>
+	
+</h:body>
+
+</html>

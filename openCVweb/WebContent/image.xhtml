@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Index</title>
+	<script type="text/javascript" src="JS/canvas.js"></script>
+	
+	<style>
+		body {
+			align: center;
+		}
+		
+		#img {
+			visibility: hidden;
+		}
+	</style>
+</h:head>
+
+<h:body style="background-image: url('img/background.png');">
+	<br/><br/>
+	
+	<p:graphicImage id="img" value="img/2.jpg" width="1%" height="1%" cache="false"/>
+	
+	<div align="center">
+		<canvas id="myCanvas" width="500" height="#{dtContextMenuView.getHeightCanvas()}">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	</div>
+	
+	<br/>
+	<hr/>
+	<br/>
+	
+	<h:form id="form">
+		<p:dataTable id="faces" var="face" value="#{dtContextMenuView.faces}" rowKey="#{face.rosto}"
+			selection="#{dtContextMenuView.selectedFace}" selectionMode="single">
+			
+			<f:facet name="header">
+				Clique com o botão direito para mais opções
+			</f:facet>
+			
+			<p:column headerText="Rosto" width="75%">
+				<div align="center">
+					<h:outputText value="#{face.rosto}"/>
+				</div>
+			</p:column>
+			
+			<p:column headerText="Visualizar">
+				<div align="center">
+					<p:commandButton id="cmdBtnVisualizar" value="Ver rosto" actionListener="#{dtContextMenuView.setSelectedFace(face)}"
+							onclick="drawFace(#{face.x}, #{face.y}, #{face.lar}, #{face.alt}, #{face.larFoto}, #{face.rosto})"/>
+				</div>
+			</p:column>
+			
+			<p:column headerText="Excluir">
+				<div align="center">
+					<p:commandButton id="cmdBtnDel" value="Deletar rosto" actionListener="#{dtContextMenuView.setSelectedFace(face)}"
+						update="form" oncomplete="PF('faceDelDialog').show()"/>
+				</div>
+			</p:column>
+		</p:dataTable>
+		
+		<p:contextMenu for="faces">
+			<p:menuitem value="Ver detalhes do rosto" update="faceDetail" oncomplete="PF('faceViewDialog').show()"/>
+			<p:menuitem value="Deletar rosto" update="faceDelete" oncomplete="PF('faceDelDialog').show()"/>
+		</p:contextMenu>
+		
+		<p:dialog header="Face Info" widgetVar="faceViewDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="faceDetail" style="text-align:center;">
+				<p:panelGrid  columns="2" rendered="#{not empty dtContextMenuView.selectedFace}" columnClasses="label,value">
+					<f:facet name="header">
+						INFO
+					</f:facet>
+					
+					<h:outputText value="ID:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.id}"/>
+					
+					<h:outputText value="Rosto:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.rosto}"/>
+					
+					<h:outputText value="Largura:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.lar}"/>
+					
+					<h:outputText value="Altura:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.alt}"/>
+					
+					<h:outputText value="X"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.x}"/>
+					
+					<h:outputText value="Y:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.y}"/>
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+		
+		<p:dialog header="Face Delete" widgetVar="faceDelDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="faceDelete" style="text-align:center;">
+				<p:panelGrid  columns="2" rendered="#{not empty dtContextMenuView.selectedFace}" columnClasses="label,value">
+					<f:facet name="header">
+						Tem certeza que deseja deletar este rosto?
+					</f:facet>
+					
+					<h:outputText value="ID:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.id}"/>
+					
+					<h:outputText value="Rosto:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.rosto}"/>
+					
+					<h:outputText value="Largura:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.lar}"/>
+					
+					<h:outputText value="Altura:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.alt}"/>
+					
+					<h:outputText value="X"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.x}"/>
+					
+					<h:outputText value="Y:"/>
+					<h:outputText value="#{dtContextMenuView.selectedFace.y}"/>
+					
+					<p:commandButton value="DELETAR" onclick="drawFace(0, 0, 0, 0, 0, ' ')"
+							action="#{dtContextMenuView.deleteFace(dtContextMenuView.selectedFace.id, dtContextMenuView.selectedFace.rosto)}"/>
+					<p:outputLabel/>
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+		
+		<br/>
+		<hr/>
+		<br/>
+		
+		<h:panelGroup>
+			<p:column>
+				<div align="center">
+					<p:commandButton value="PRÓXIMA FOTO" action="#{dtContextMenuView.nextFace}" ajax="false"
+				onclick="nextFace(0, 0, 0, 0, ' ')" />
+				</div>
+			</p:column>
+		</h:panelGroup>
+	</h:form>
+</h:body>
+</html>

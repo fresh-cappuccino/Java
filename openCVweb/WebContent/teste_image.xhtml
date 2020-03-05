@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Index</title>
+	
+	<style>
+		body {
+			align: center;
+		}
+		
+		#img {
+			display: none;
+		}
+	</style>
+</h:head>
+
+<h:body style="background-color: #21BCBC;">
+	<br/><br/>
+	
+	<div align="center">
+		<f:view style="border: 2px; border-width: 2px; border-color: black;">
+			<h:graphicImage id="img" value="img/1.jpg"/>
+		</f:view>
+	</div>
+	
+	<div align="center">
+		<canvas id="myCanvas" width="500" height="500" >
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	</div>
+	
+	<script>
+//		var x = 0, y = 0, lar = 10, alt = 10;
+		var x = localStorage.getItem("x"), y = localStorage.getItem("y"), lar = localStorage.getItem("lar"), alt = localStorage.getItem("alt");
+		var ros = localStorage.getItem("ros");
+		window.onload = function() {
+			var c=document.getElementById('myCanvas');
+			var ctx=c.getContext('2d');
+			var img=document.getElementById('img');
+			ctx.drawImage(img,10,10);
+			var canvas = document.getElementById('myCanvas');
+			var context = canvas.getContext('2d');
+			var gradient = context.createLinearGradient(0, 0, 200, 0);
+			
+			x = parseInt(x);
+			y = parseInt(y);
+			lar = parseInt(lar);
+			alt = parseInt(alt);
+			
+			context.strokeStyle = 'red';
+			context.lineWidth = 4;
+			context.strokeRect(x + 10, y + 10, lar, alt);
+			
+			gradient.addColorStop(0, "white");
+			context.fillStyle = gradient;
+			context.fillRect(x + 8, y + alt + 15, 98, 27);
+			context.font = "24px Arial";
+			context.fillStyle = "red";
+			context.fillText("Rosto " + ros, x + 10, y + alt + 35);
+		}
+		
+		function drawFace(xx, yy, xlar, yalt, rosto) {
+			x = xx;
+			y = yy;
+			lar = xlar;
+			alt = yalt;
+			ros = rosto;
+			
+			localStorage.setItem("x", x);
+			localStorage.setItem("y", y);
+			localStorage.setItem("lar", lar);
+			localStorage.setItem("alt", alt);
+			localStorage.setItem("ros", ros);
+			reload();
+		}
+	</script>
+</h:body>
+</html>
+
+<!--
+	> Select fotos inválidas (inicialmente rostos > 2)
+	> Escolha através de numeração
+	> Exclusão de falsos positivos
+-->

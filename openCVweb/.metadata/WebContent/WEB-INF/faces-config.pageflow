@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15759984359350" configfile="/openCVweb/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="image.xhtml" x="122" y="178" id="pf15813674679803" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf15832578293117" inlinks="pf15832578293117" path="/image.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showVideo.xhtml" x="122" y="562" id="pf15828355917056" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="/image.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inputVideo.xhtml" x="122" y="946" id="pf15832578293118" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15832578293119" path="/inputVideo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showVideo.xhtml" x="338" y="946" id="pf158325782931110" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15832578293119" path="/showVideo.xhtml"/>
+  <links id="pf15832578293119" target="pf158325782931110" source="pf15832578293118" outcome="inputVideo" redirect="true"/>
+  <links id="pf15832578293117" target="pf15813674679803" source="pf15813674679803" outcome="image" redirect="true">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+</pageflow:Pageflow>
